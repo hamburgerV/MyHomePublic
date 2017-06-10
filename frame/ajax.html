@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+	function jsonTOstr(json){
+		json.r = Math.random();
+		var arr = [];
+		for(var name in json){
+			arr.push(name + ':' + json[name]);
+		}
+		return arr.join('&');
+	}
+	function ajax(json){
+		if(!json.url){
+			return false;
+		}
+		json.data = json.data || {};
+		json.type = json.type || "GET";
+		json.timeout = json.timeout || 10000,
+
+		if(window.XMLHttpRequest){
+			var oAjax = new XMLHttpRequest();
+		}else{
+			var oAjax = new ActiveXObject("Microsoft.XMLHTTP");
+		}
+
+		switch(json.type.toLowerCase()){
+			case 'get':
+				oAjax.open("GET",json.url+'?'+jsonTOstr(json.data),true);
+				oAjax.send();
+			break;
+			case 'post':
+				oAjax.open("POST",json.url,true);
+				oAjax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+				oAjax.send(jsonTOstr(json.data))
+			break;
+		}
+		var timer = setTimeout(function(){
+			json.loadFn && json.loadFn();
+			json.error && json.error();
+			oAjax.onreadystatechange = null;
+		},json.timeout)
+		oAjax.onreadystatechange = function(){
+			if(oAjax.readyState == 4){
+				if(oAjax.status>=200 && oAjax.status <300 || oAjax == 304){
+					json.success && json.success();
+					clearTimeout(timer);
+				}else{
+					clearTimeout(timer);
+					json.error && json.error();
+
+				}
+			}
+		};
+
+
+
+	}
+
+</script>

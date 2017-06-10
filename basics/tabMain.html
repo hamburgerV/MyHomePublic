@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="../0css/public.css">
+	<style type="text/css">
+		.tab{ width: 200px; height: 300px; margin-right:20px;  }
+		.tab input{ width: 50px; height:20px;  }
+		.tab .btnOn{ background: #08c; }
+		.tab .btnOff{ background: #ccc; }
+		.tab p{ width: 198px; height: 200px; border: 1px solid #dcdcdc;  display: none;}
+		.tab p:nth-child(1){background: red;}
+		.tab p:nth-child(2){background: yellow;}
+		.tab p:nth-child(3){background: green;}
+		.tab .show{ display: block; }
+		.tab .hide{ display: none; }
+		
+	</style>
+</head>
+<body>
+	<div class="clearfix">
+		<div class="tab fl">
+			<input type="button" value="按钮1" class="btnOn">
+			<input type="button" value="按钮2">
+			<input type="button" value="按钮3">
+			<div>
+				<p class="box1 show">1</p>
+				<p class="box1">2</p>
+				<p class="box1">3</p>
+			</div>
+		</div>
+		<div class="tab fl">
+			<input type="button" value="按钮1" class="btnOn">
+			<input type="button" value="按钮2">
+			<input type="button" value="按钮3">
+			<div>
+				<p class="box1 show">1</p>
+				<p class="box1">2</p>
+				<p class="box1">3</p>
+			</div>
+		</div>
+		<div class="tab fl">
+			<input type="button" value="按钮1" class="btnOn">
+			<input type="button" value="按钮2">
+			<input type="button" value="按钮3">
+			<div>
+				<p class="box1 show">1</p>
+				<p class="box1">2</p>
+				<p class="box1">3</p>
+			</div>
+		</div>
+	</div>
+	
+</body>
+</html>
+<script src="../0js/publicMain.js"></script>
+<script>
+	function TabMain(){
+
+	}
+	TabMain.prototype.basicsEvent = function(obj,oBox){
+		var _this = this;
+		for(var i = 0; i<obj.length; i++){
+			(function(index){
+				obj[i].onclick = function(){
+					_this.eventOver(obj,oBox);
+					_this.eventClick(this,oBox[index]);
+				};
+			})(i)
+		}
+	};
+	TabMain.prototype.autoEvent = function(obj,oBox,count){
+		count = count || 0;
+		var _this = this;
+		var timer = setInterval(function(){
+			count++;
+			_this.eventOver(obj,oBox);
+			_this.eventClick(obj[count%obj.length],oBox[count%oBox.length]);
+		},1000);
+	}
+	TabMain.prototype.BossEvent = function(obj,oBox){
+		this.basicsEvent(obj,oBox);
+		this.autoEvent(obj,oBox);
+	}
+	TabMain.prototype.eventClick = function(obj,oBox){
+		obj.className = 'btnOn';
+		oBox.className = 'show';
+	};
+	TabMain.prototype.eventOver = function(obj,oBox){
+		for(var i = 0; i<obj.length; i++){
+			obj[i].className = 'btnOff';
+			oBox[i].className = 'hide';
+		}
+		
+	};
+
+	var oBigBox = document.getElementsByClassName('tab');
+	var aBtn1 = oBigBox[0].getElementsByTagName('input');
+	var aBoxk1 = oBigBox[0].getElementsByTagName('p');
+
+	var aBtn2 = oBigBox[1].getElementsByTagName('input');
+	var aBoxk2 = oBigBox[1].getElementsByTagName('p');
+
+	var aBtn3 = oBigBox[2].getElementsByTagName('input');
+	var aBoxk3 = oBigBox[2].getElementsByTagName('p');
+
+	var tabFn = new TabMain();
+	tabFn.basicsEvent(aBtn1,aBoxk1);
+	tabFn.autoEvent(aBtn2,aBoxk2);
+	tabFn.BossEvent(aBtn3,aBoxk3);
+
+</script>
