@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="../0css/public.css">
+	<style>
+		#box{ width: 400px; height:40px; padding-top: 40px; position: relative; margin: 60px auto; border: 1px solid #dcdcdc; }
+		.block{ width: 10px; height: 10px; background: red; position: absolute; top: 40px; }
+		#box .line{ border: 1px solid #000;position:absolute;  }
+	</style>
+</head>
+<body>
+	<div id="box">
+		<div class="block" id="block"></div>
+		<div class="block" id="block2"></div>
+	</div>
+</body>
+</html>
+<script>
+window.onload = function(){
+	var oBox = document.getElementById('box');
+	var oBar = document.getElementById('block');
+	var oBar1 = document.getElementById('block2');
+	var scale = 20
+	var num = 0;
+	var t = 20;
+	var t1 = 40
+	var timer = null;
+	timer = setInterval(function(){
+		num++;
+		var oLine1 = document.createElement('div');
+		var oLine2 = document.createElement('div');
+		oLine1.className = oLine2.className = 'line';
+		var topBar1 = t+ Math.sin((num*Math.PI/180)) * scale+'px';
+		var leftBar1 = num*Math.PI/180 * scale +'px';
+
+		var topBar2 = t1 - Math.sin((num*Math.PI/180)) * scale+'px';
+		oLine1.style.left = oLine2.style.left = leftBar1;
+		oLine1.style.top = topBar1;
+		oLine2.style.top = topBar2;
+
+		oBar.style.top = topBar1;
+		oBar.style.left = leftBar1;
+
+		oBar1.style.top = t1 - Math.sin((num*Math.PI/180)) * scale+'px';
+		oBar1.style.left = leftBar1;
+
+		oBox.appendChild(oLine1);
+		oBox.appendChild(oLine2);
+		if(parseInt(leftBar1) >= 399){
+			clearInterval(timer);
+		}
+
+
+	},30)
+
+	// oBox.style.left = L + (num*Math.PI/180)*val +'px';
+		// oBox.style.top = T - Math.sin((num*Math.PI/180))*val + 'px';
+
+};
+</script>

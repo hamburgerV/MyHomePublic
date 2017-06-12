@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="../0css/public.css">
+	<style>
+		.box{ width: 200px; height:50px; border: 1px solid #dcdcdc; position:relative; margin: 40px auto; text-align: center;line-height: 50px;  }
+		.bar{ position: absolute; width:0;background:red; top: 0; left: 0; z-index: 1; height:50px;  }
+		.txt{ position: relative; z-index: 2;    }
+	</style>
+</head>
+<body>
+	<div class="box" id="box">
+		<p class="bar"></p>
+		<span class="txt"></span>
+	</div>
+</body>
+</html>
+<script>
+window.onload = function(){
+	var oBox = document.getElementById('box');
+	var oBar = oBox.getElementsByTagName('p')[0];
+	var oTxt = oBox.getElementsByTagName('span')[0];
+	var timer = null;
+	var count = 0;
+	timer = setInterval(function(){
+		count++;
+		if(count == 100){
+			clearInterval(timer);
+		}else{
+			if(count>=60){
+				oTxt.style.color = '#fff';
+			}else{
+				oTxt.style.color = '#000';
+			}
+			oBar.style.width = count*2 +'px';
+			oTxt.innerHTML = count+"%";
+		}
+	},300);
+};
+</script>
