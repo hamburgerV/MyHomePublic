@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="../0css/public.css">
+	<style>
+		#box{ width: 400px; height: 300px; margin: 20px auto; }
+		.ballBox p{ width: 50px; height: 50px; border-radius: 50%; margin-right: 20px; background: red; color: #fff; text-align: center; line-height: 50px; font-weight: bold; font-size: 20px; }
+		.ballBox p:last-child{ margin-right: 0; }
+		.ballBtnBox{ text-align: center; margin-top: 40px;  }
+		.ballBtnBox input{ padding: 20px; font-size: 16px; }
+	</style>
+</head>
+<body>
+	<div id="box" class="clearfix">
+		<div class="ballBox clearfix">
+			<p class="fl ball">1</p>
+			<p class="fl ball">2</p>
+			<p class="fl ball">3</p>
+			<p class="fl ball">4</p>
+			<p class="fl ball">5</p>
+			<p class="fl ball">6</p>
+		</div>
+		<div class="ballBtnBox">
+			<input class="ballBtn" type="button" value="来一注">
+		</div>
+		
+	</div>
+</body>
+</html>
+<script sec="../0js/publicMain.js"></script>
+<script>
+	var oBtn = document.getElementsByClassName('ballBtn')[0];
+	var aP = document.getElementsByClassName('ball');
+
+
+	oBtn.onclick = function(){
+		
+	};
+	function ColorBall(){
+		this.ballLength = 6;
+	}
+	ColorBall.prototype.init = function(){
+
+	};
+	ColorBall.prototype.Event = function(){
+		for(var i = 0; i<this.ballLength; i++){
+			
+		}
+	}
+
+
+
+
+</script>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="../0css/public.css">
+	<style type="text/css">
+		#box{ width: 400px; height: 400px; margin: 20px auto;  }
+		#box p{ height: 20px; width: 100%; }
+		#box .red{ background: red; }
+		#box .blue{ background: blue; }
+	</style>
+</head>
+<body>
+	<div id="box"></div>
+	
+</body>
+</html>
+<script>
+	var oBox = document.getElementById('box');
+	for(var i = 0; i<20; i++){
+		var oP = document.createElement('p');
+		if(i%2){
+			oP.className = 'red';
+		}else{
+			oP.className = 'blue';
+		}
+		oBox.appendChild(oP);
+	}
+
+</script>

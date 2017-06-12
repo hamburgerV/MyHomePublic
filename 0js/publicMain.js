@@ -16,5 +16,16 @@ function jsonTOstr(json){ // 转str
 function todou(n){ // 补零
 	return n > 10 ? '' + n : '0' + n; 
 }
+function findInArr(n,arr){
+	for(var i = 0; i<arr.length; i++){
+		if(n == arr[i]){
+			return true;
+		}
+	}
+	return false;
+}
+function randomF(m,n){
+	return parseInt((Math.random()*(m-n)+n));
+}
 
 
