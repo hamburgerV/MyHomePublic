@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="../0css/public.css">
+	<style type="text/css">
+		#oUl{ width: 200px;  margin: 100px auto;  }
+		#oUl li{ float: left; width: 14px; height: 27px;   }
+		#oUl .left{ background: url("../0img/star.gif") no-repeat 0 0; }
+		#oUl .right{ background: url("../0img/star.gif") no-repeat -14px 0; }
+
+		#oUl .left_on{ background:url("../0img/star.gif") no-repeat 0 -29px; }
+		#oUl .right_on{ background:url("../0img/star.gif") no-repeat -14px -29px; }
+	</style>
+</head>
+<body>
+	<ul id="oUl" class="clearfix">
+	</ul>
+</body>
+</html>
+<script type="text/javascript">
+window.onload = function(){
+	var oUl = document.getElementById('oUl');
+	for(var i = 0; i<10; i++){
+		var oLi = document.createElement('li');
+		if(i%2 == 0){
+			oLi.className = 'left';
+		}else{
+			oLi.className = 'right';
+		}
+		oUl.appendChild(oLi);
+	}
+	var aLi = oUl.getElementsByTagName('li');
+	for(var i = 0; i<aLi.length; i++){
+		aLi[i].index = i;
+		aLi[i].onmouseover = function(){
+			for(var j = 0; j<aLi.length; j++){
+				if(j%2 == 0){
+					if(j <= this.index){
+						aLi[j].className = 'left_on';
+					}else{
+						aLi[j].className = 'left';
+					}
+				}else{
+					if(j <= this.index){
+						aLi[j].className = 'right_on';
+					}else{
+						aLi[j].className = 'right';
+					}
+				}
+			}
+		};	
+
+		aLi[i].onmouseout = function(){
+			for(var i = 0; i<aLi.length; i++){
+				if(i%2 == 0){
+					aLi[i].className = 'left';
+				}else{
+					aLi[i].className = 'right';
+				}
+			}
+			
+		};
+	}
+
+
+};
+	
+</script>

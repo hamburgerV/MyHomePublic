@@ -29,26 +29,44 @@
 	</div>
 </body>
 </html>
-<script sec="../0js/publicMain.js"></script>
+<script src="../0js/publicMain.js"></script>
 <script>
 	var oBtn = document.getElementsByClassName('ballBtn')[0];
 	var aP = document.getElementsByClassName('ball');
+	
 
-
-	oBtn.onclick = function(){
-		
-	};
-	function ColorBall(){
-		this.ballLength = 6;
-	}
-	ColorBall.prototype.init = function(){
-
-	};
-	ColorBall.prototype.Event = function(){
-		for(var i = 0; i<this.ballLength; i++){
-			
+	function getArr(){
+		var arr = [];
+		while(arr.length<6){
+			var n = todou(randomF(34,1));
+			if(!findInArr(n,arr)){
+				arr.push(n)
+			}
 		}
+		return arr;
+	}	
+	function setP(){
+		clearInterval(timer1);
+		clearTimeout(timer2);
+		var timer1 = null;
+		var timer2 = null;
+		timer1 = setInterval(function(){
+			var arrNum = getArr();
+			for(var i = 0; i<aP.length; i++){
+				aP[i].innerHTML = arrNum[i];
+			}
+		},30);
+		timer2 = setTimeout(function(){
+			clearInterval(timer1);
+		},300);
+
+		
 	}
+	setP()
+	oBtn.onclick = function(){
+		setP();
+	};
+	
 
 
 

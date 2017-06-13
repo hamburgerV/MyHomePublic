@@ -27,5 +27,47 @@ function findInArr(n,arr){
 function randomF(m,n){
 	return parseInt((Math.random()*(m-n)+n));
 }
+function Repeat1(arr){  // 数组去重1 限制是可以排序的数组
+	arr.sort();
+	for(var i = 0; i<arr.length; i++){
+		if(arr[i] == arr[i+1]){
+			arr.splice(i,1);
+			i--
+		}
+	}
+	return arr
+}
+function Repeat2(arr){ // 数组去重2 json
+	var json = {};
+	var arr1 = [];
+	for(var i = 0; i<arr.length; i++){
+		if(!json[arr[i]]){
+			arr1.push(arr[i]);
+		}
+	}
+	return arr1
+}
+function Repeat3(arr){ // 数组去重3 利用其他方法
+	var arr1 = [];
+	for(var i = 0; i<arr.length; i++){
+		if(findInArr(arr[i],arr1) == false){
+			arr1.push(arr[i])
+		}
+	}
+	return arr1
+}
+function sum(){
+	var num = 0;
+	for(var i = 0; i<arguments.length; i++){
+		num += arguments[i]
+	}
+	return num
+}
+
+
+
+
+
+
 
 

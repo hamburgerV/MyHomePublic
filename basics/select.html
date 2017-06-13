@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script>
+
+</script>
+</head>
+
+<body>
+<input type="checkbox" />
+<hr/>
+<input type="checkbox" />
+<input type="checkbox" />
+<input type="checkbox" />
+</body>
+</html>
+<script type="text/javascript">
+	var aBtn = document.getElementsByTagName('input');
+	var count = 0;
+	aBtn[0].onclick = function(){
+		for(var i = 1; i<aBtn.length; i++){
+			if(this.checked == true){
+				aBtn[i].checked = true;
+				count = aBtn.length - 1;
+			}else{
+				aBtn[i].checked = false;
+				count = 0;
+			}
+		}
+	};
+
+	for(var i = 1; i<aBtn.length; i++){
+		aBtn[i].onclick = function(){
+			if(this.checked == true){
+				count++;
+			}else{
+				count--;
+			}
+			if(count == aBtn.length - 1){
+				aBtn[0].checked = true;
+			}else{
+				aBtn[0].checked = false;
+			}
+		};
+
+	}
+
+</script>
