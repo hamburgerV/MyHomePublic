@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div id="box"></div>
+	<div id="box1"></div>
+</body>
+</html>
+<script>
+window.onload = function(){
+	
+	var oBox = document.getElementById('box');
+	var oD = new Date();
+	function getTime(oD){
+		var oYear = oD.getFullYear();
+		var oMonth = oD.getMonth()+1;
+		var oDate = oD.getDate();
+		var oDay = oD.getDay();
+		var oHour = oD.getHours();
+		var oMin = oD.getMinutes();
+		var oSin = oD.getSeconds();
+		var oS = oYear+'年'+ oMonth +'月'+oDate +'日星期'+ oDay +'   '+ oHour +'时'+ oMin +'分'+oSin+'秒';
+		return oS;
+	}
+	
+	oBox.innerHTML = getTime(oD);
+	setInterval(function(){
+		var oD = new Date();
+		oBox.innerHTML = getTime(oD);
+	},1000);
+	var oBox1 = document.getElementById('box1');
+	var nD = new Date();
+	nD.setFullYear(2014,1,1);
+	nD.setMonth(2);
+	nD.setDate(2);
+	nD.setHours(12);
+	nD.setMinutes(12);
+	nD.setSeconds(12);
+
+	oBox1.innerHTML = getTime(nD);
+};
+</script>

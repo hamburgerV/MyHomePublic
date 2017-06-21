@@ -4,13 +4,19 @@
 	<meta charset="utf-8">
 	<title></title>
 	<link rel="stylesheet" href="0css/public.css">
+	<style>
+		#box{ width: 100px; height:100px; background: red; position: absolute; top:0; left:0; }
+	</style>
 </head>
 <body>
-
+	<div id="box"></div>
 </body>
 </html>
 <script src="0js/publicMain.js"></script>
 <script>
-	
+window.onload = function(){
+	var oBox = document.getElementById('box');
+	move(oBox,{"left":200});
+};	
 	
 </script>
