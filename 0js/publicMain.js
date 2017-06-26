@@ -63,7 +63,21 @@ function sum(){
 	}
 	return num
 }
-
+function getByClass(oP,oC){
+	if(oP.getElementsByClassName){
+		return oP.getElementsByClassName(oC);
+	}else{
+		var aEle = oP.getElementsByTagName('*');
+		var arr = [];
+		for(var i = 0; i<aEle.length; i++){
+			var tmp = aEle[i].className.split(' ');
+			if(findInArr(oC,tmp)){
+				arr.push(aEle[i])
+			}
+		}
+		return arr
+	}
+}
 
 
 
